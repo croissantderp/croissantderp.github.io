@@ -1,0 +1,35 @@
+{
+  projects =
+  [
+    {
+      "title": "E-Scooter",
+      "link": "escooter",
+      "cover": "scooter_cover.png",
+      "description": "description for project 1"
+    },
+    {
+      "title": "project 2",
+      "link": "2",
+      "cover": "scooter_cover.png",
+      "description": "description for project 2%%scooter_cover.png%%e"
+    },
+    {
+      "title": "project 3",
+      "link": "3",
+      "cover": "scooter_cover.png",
+      "description": "description for project 3"
+    },
+    {
+      "title": "project 4",
+      "link": "4",
+      "cover": "scooter_cover.png",
+      "description": "description for project 4"
+    },
+    {
+      "title": "project 5",
+      "link": "5",
+      "cover": "scooter_cover.png",
+      "description": "description for project 5"
+    }
+  ]
+}

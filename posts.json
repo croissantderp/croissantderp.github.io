@@ -1,0 +1,18 @@
+{
+  posts = [
+    {
+      "title": "post 2",
+      "link": "2",
+      "date": "12/20/2025",
+      "summary": "summary for post 2",
+      "description": "description for post 2"
+    },
+    {
+      "title": "New Website!",
+      "link": "1",
+      "date": "12/20/2025",
+      "summary": "I made this new website as an update to my old high school website. I also took the chance to clean up the code and improve performance.",
+      "description": "I made this new website as an update to my old high school website. I also took the chance to clean up the code and improve performance."
+    }
+  ]
+}
