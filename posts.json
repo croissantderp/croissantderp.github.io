@@ -1,16 +1,27 @@
 {
-  posts = [
+  posts =
+  [
     {
-      "title": "post 2",
+      "title": "Scooter Battery Upgrade",
+      "link": "3",
+      "date": "12/20/2025",
+      "tag": "E-Scooter",
+      "summary": "summary for post 1",
+      "description": "description for post 1"
+    },
+    {
+      "title": "Scooter Thing",
       "link": "2",
       "date": "12/20/2025",
-      "summary": "summary for post 2",
+      "tag": "E-Scooter",
+      "summary": "I did a thing",
       "description": "description for post 2"
     },
     {
       "title": "New Website!",
       "link": "1",
       "date": "12/20/2025",
+      "tag": "",
       "summary": "I made this new website as an update to my old high school website. I also took the chance to clean up the code and improve performance.",
       "description": "I made this new website as an update to my old high school website. I also took the chance to clean up the code and improve performance."
     }

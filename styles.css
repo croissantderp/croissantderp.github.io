@@ -5,26 +5,33 @@
 
 @keyframes bounce {
     0% {
-        right: 35%;
+        right: 37%;
     }
 
     30% {
-        right: 25%;
+        right: 29%;
     }
 
     100% {
-        right: 35%;
+        right: 37%;
     }
+}
+
+:root {
+    --project-width: 36vw;
+    --max-width: 340px;
 }
 
 html {
     overflow-x: hidden;
     font-family: inter;
+    width: 100vw;
 }
 
 body {
     margin: 0 auto;
     max-width: 1200px;
+    overflow: hidden;
 }
 
 #menu {
@@ -79,7 +86,9 @@ body {
     #about div {
         padding: 20px;
         padding-bottom: 70px;
-        max-width: 500px;
+        min-width: 300px;
+        max-width: 800px;
+        width: 40vw;
         position: relative;
     }
 
@@ -122,12 +131,12 @@ body {
 }
 
     #projects-short div:last-child {
-        height: 36vw;
-        max-height: 340px;
+        height: var(--project-width);
+        max-height: var(--max-width);
         min-height: 280px;
-        width: 100px;
-        border-radius: 15px;
-        min-width: 100px;
+        width: 130px;
+        min-width: 130px;
+        border-radius: 20px;
         outline: 2px solid black;
         outline-offset: -2px;
         transition: .25s ease-in-out;
@@ -146,7 +155,7 @@ body {
         #projects-short div:last-child p {
             position: absolute;
             top: 55%;
-            left: 20%;
+            left: 28%;
             margin: 0;
             font-weight: 600;
             font-size: 24px;
@@ -155,7 +164,6 @@ body {
         #projects-short div:last-child img {
             position: absolute;
             top: 70%;
-            right: 35%;
             margin: 0;
             animation: 1s bounce ease-in-out infinite paused;
         }
@@ -173,15 +181,15 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-content: start;
-    min-height: 90vh;
+    min-height: 70vh;
 }
 
 .project {
-    height: 36vw;
-    max-height: 340px;
+    height: var(--project-width);
+    max-height: var(--max-width);
     min-height: 280px;
-    width: 36vw;
-    max-width: 340px;
+    width: var(--project-width);
+    max-width: var(--max-width);
     min-width: 280px;
     position: relative;
     margin-right: 10px;
@@ -226,7 +234,7 @@ body {
 
 .entry {
     padding: 0 30px 0 30px;
-    min-height: 90vh;
+    min-height: 30vh;
     width: 100%;
 }
 
@@ -273,27 +281,35 @@ body {
         background-color: #FF9500;
     }
 
+    #post-button + div {
+        height: 50px;
+    }
+
 #footer {
     position: absolute;
     left: 0;
-    margin-top: 50px;
     width: 100%;
-    height: 100px;
+    height: 200px;
     background-color: black;
 }
 
     #footer div {
         max-width: 1275px;
         display: flex;
+        flex-wrap: wrap;
         margin: 0 auto;
         padding: 30px;
     }
 
         #footer div a {
             color: white;
-            margin-right: 10px;
             text-decoration: none;
             transition: .25s ease-in-out;
+        }
+
+        #footer div p {
+            color: white;
+            margin: 0 10px 0 10px;
         }
 
             #footer div a:hover {
