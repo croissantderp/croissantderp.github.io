@@ -1,5 +1,39 @@
 ﻿document.addEventListener('DOMContentLoaded', initiate);
 
+function textProcessor(input) {
+    //replaces text surrounded by %% with images
+    let splitDesc = input.split("%%");
+    let finalString = "";
+    for (let i = 0; i < splitDesc.length; i++) {
+        if (i % 2 == 0) {
+            finalString = finalString + "<p>" + splitDesc[i] + "</p>";
+        }
+        else {
+            let splitSplitDesc = "";
+            switch (splitDesc[i].split(/[,.]/).pop()) {
+                case "b":
+                    finalString = finalString + "</p><p>";
+                    break;
+                case "png":
+                case "jpg":
+                    splitSplitDesc = splitDesc[i].split(",");
+                    finalString = finalString + "<img src=\"./media/" + splitSplitDesc[1] + "\" title=\"" + splitSplitDesc[0] + "\" alt=\"" + splitSplitDesc[0] + "\">";
+                    break;
+                case "mp4":
+                    finalString = finalString + "<video controls><source src=\"./media/" + splitDesc[i] + "\" type=\"video/mp4\"></video>";
+                    break;
+                case "h":
+                    splitSplitDesc = splitDesc[i].split(",");
+                    finalString = finalString + "<h3>" + splitSplitDesc[0] + "</h3>";
+
+            }
+            
+        }
+    }
+
+    return finalString;
+}
+
 function initiate() {
     const path = window.location.href;
     const page = path.split("?").pop();
@@ -14,7 +48,7 @@ function initiate() {
         for (let project of projects) {
             let div = document.createElement("div");
             div.className = "project";
-            div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img src=\"./media/" + project.cover + "\" />"
+            div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img src=\"./media/covers/" + project.cover + "\" />"
             target.insertBefore(div, target.lastElementChild);
             if (i >= 4) break;
             i++;
@@ -35,7 +69,7 @@ function initiate() {
     //if it is portfolio page
     else if (document.title == "Portfolio") {
         const target = document.getElementById("projects");
-        const footer = document.getElementById("footer");
+        const footer = document.getElementById("post-button");
 
         //if a specific project is selected in the URL
         if (params.has("proj")) {
@@ -45,21 +79,10 @@ function initiate() {
 
                 //shows name of selected project 
                 document.getElementsByClassName("title")[0].innerHTML = project.title;
+                document.title = project.title;
                 let div = document.createElement("div");
                 div.className = "entry";
-
-                //replaces text surrounded by %% with images
-                let splitDesc = project.description.split("%%");
-                let finalString = "";
-                for (let i = 0; i < splitDesc.length; i++) {
-                    if (i % 2 == 0) {
-                        finalString = finalString + "<p>" + splitDesc[i] + "</p>";
-                    }
-                    else {
-                        finalString = finalString + "<img src=\"./media/" + splitDesc[i] + "\" />";
-                    }
-                }
-                div.innerHTML = finalString;
+                div.innerHTML = textProcessor(project.description);
                 target.appendChild(div);
 
                 //shows posts tagged with the project at bottom
@@ -77,22 +100,14 @@ function initiate() {
                         post = postTags[i];
                         let div2 = document.createElement("div");
                         div2.className = "entry";
-                        splitDesc = post.description.split("%%");
-                        finalString = "<h2>" + post.title + "</h2>";
-                        for (let i = 0; i < splitDesc.length; i++) {
-                            if (i % 2 == 0) {
-                                finalString = finalString + "<p>" + splitDesc[i] + "</p>";
-                            }
-                            else {
-                                finalString = finalString + "<img src=\"./media/" + splitDesc[i] + "\" />";
-                            }
-                        }
-
-                        div2.innerHTML = finalString;
+                        div2.innerHTML = "<h2>" + post.title + "</h2>" + textProcessor(post.description);
                         document.body.insertBefore(div2, footer);
                     }
+                    footer.innerHTML = "↪ All Posts";
                 }
-
+                else {
+                    document.body.removeChild(footer);
+                }
             }
         }
         //show generic projects page
@@ -100,7 +115,7 @@ function initiate() {
             for (let project of projects) {
                 let div = document.createElement("div");
                 div.className = "project";
-                div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img src=\"./media/" + project.cover + "\" />"
+                div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img src=\"./media/covers/" + project.cover + "\" />"
                 target.appendChild(div);
             }
         }
@@ -118,19 +133,10 @@ function initiate() {
                 let index = titles.indexOf(params.get("post"));
                 let post = posts[index];
                 document.getElementsByClassName("title")[0].innerHTML = post.title;
+                document.title = post.title;
                 let div = document.createElement("div");
                 div.className = "entry";
 
-                let splitDesc = post.description.split("%%");
-                let finalString = "";
-                for (let i = 0; i < splitDesc.length; i++) {
-                    if (i % 2 == 0) {
-                        finalString = finalString + "<p>" + splitDesc[i] + "</p>";
-                    }
-                    else {
-                        finalString = finalString + "<img src=\"./media/" + splitDesc[i] + "\" />";
-                    }
-                }
                 if (index < titles.length - 1) {
                     finalString = finalString + "<a href=\"posts.html?post=" + titles[index + 1] + "\"><< Previous Post</a> ||";
                 }
@@ -138,7 +144,8 @@ function initiate() {
                 if (index > 0) {
                     finalString = finalString + "|| <a href=\"posts.html?post=" + titles[index - 1] + "\">Next Post >></a>";
                 }
-                div.innerHTML = finalString;
+
+                div.innerHTML = textProcessor(post.description);
                 target.appendChild(div);
             }
         }
