@@ -16,6 +16,7 @@ function textProcessor(input) {
                     break;
                 case "png":
                 case "jpg":
+                case "gif":
                     splitSplitDesc = splitDesc[i].split(",");
                     finalString = finalString + "<img src=\"./media/" + splitSplitDesc[1] + "\" title=\"" + splitSplitDesc[0] + "\" alt=\"" + splitSplitDesc[0] + "\">";
                     break;
@@ -41,6 +42,9 @@ function initiate() {
 
     //if it is landing page
     if (document.title == "croissantderp") {
+        //random cover image
+        document.getElementById("profile").style.setProperty("background-image", "url(./assets/profiles/" + (Math.floor(Math.random() * 4) + 1) + ".png");
+
         const target = document.getElementById("projects-short");
 
         //shows first five projects on front page
@@ -54,7 +58,7 @@ function initiate() {
             i++;
         }
 
-        //shows first three projects on front page
+        //shows first three posts on front page
         i = 0;
         const target2 = document.getElementById("posts-short");
         for (let post of posts) {
