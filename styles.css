@@ -19,7 +19,7 @@
 
 :root {
     --project-width: 36vw;
-    --max-width: 340px;
+    --max-width: 320px;
 }
 
 html {
@@ -31,7 +31,7 @@ html {
 body {
     margin: 0 auto;
     max-width: 1130px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #menu {
@@ -91,8 +91,8 @@ body {
         padding: 20px;
         padding-bottom: 70px;
         min-width: 300px;
-        max-width: 800px;
-        width: 40vw;
+        max-width: 700px;
+        width: 55vw;
         position: relative;
     }
 
@@ -106,7 +106,7 @@ body {
             padding: 0 0 10px 10px;
         }
 
-        #about div a {
+        #about div .resume {
             position: absolute;
             bottom: 0;
             padding: 11px 15px 11px 15px;
@@ -130,6 +130,7 @@ body {
 
 #projects-short {
     padding: 0 30px 0 30px;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -196,8 +197,7 @@ body {
     max-width: var(--max-width);
     min-width: 280px;
     position: relative;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin: 0 16px 32px 16px;
     border-radius: 20px;
     border: 2px solid white;
     transition: .25s ease-in-out;
@@ -213,7 +213,7 @@ body {
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 3;
+        z-index: 4;
     }
 
     .project p {
@@ -225,15 +225,25 @@ body {
         z-index: 2;
         font-size: 20px;
         font-weight: 600;
+        z-index: 3;
     }
 
-    .project img {
+    .project .bg {
         border-radius: 18px;
         height: 100%;
         width: 100%;
-        position: absolute;
         top: 0;
         left: 0;
+        z-index: -1;
+    }
+
+    .project img {
+        height: 125%;
+        width: 125%;
+        position: absolute;
+        top: -12.5%;
+        left: -12.5%;
+        z-index: 2;
     }
 
 .entry {
@@ -346,4 +356,9 @@ body {
 
             #footer div a:hover {
                 color: #FF9500;
+                text-decoration: underline;
+            }
+
+            #footer div p:last-child {
+                color: grey !important;
             }

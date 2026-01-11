@@ -12,7 +12,7 @@ function textProcessor(input) {
             let splitSplitDesc = "";
             switch (splitDesc[i].split(/[,.]/).pop()) {
                 case "b":
-                    finalString = finalString + "</p><p>";
+                    finalString = finalString.replace("<a href", "<a target=\"none\" href") + "</p><p>";
                     break;
                 case "png":
                 case "jpg":
@@ -46,14 +46,15 @@ function initiate() {
         document.getElementById("profile").style.setProperty("background-image", "url(./assets/profiles/" + (Math.floor(Math.random() * 4) + 1) + ".png");
 
         const target = document.getElementById("projects-short");
+        const lastElement = target.children[0];
 
         //shows first five projects on front page
         let i = 0;
         for (let project of projects) {
             let div = document.createElement("div");
             div.className = "project";
-            div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img src=\"./media/covers/" + project.cover + "\" />"
-            target.insertBefore(div, target.lastElementChild);
+            div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img class=\"bg\" src=\"./media/covers/" + project.cover.replace("_cover", "_bg") + "\" /><img src=\"./media/covers/" + project.cover + "\" />";
+            target.insertBefore(div, lastElement);
             if (i >= 4) break;
             i++;
         }
@@ -119,7 +120,7 @@ function initiate() {
             for (let project of projects) {
                 let div = document.createElement("div");
                 div.className = "project";
-                div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img src=\"./media/covers/" + project.cover + "\" />"
+                div.innerHTML = "<a href=\"projects.html?proj=" + project.link + "\"></a><p>" + project.title + "</p><img class=\"bg\" src=\"./media/covers/" + project.cover.replace("_cover", "_bg") + "\" /><img src=\"./media/covers/" + project.cover + "\" />";
                 target.appendChild(div);
             }
         }
@@ -141,15 +142,17 @@ function initiate() {
                 let div = document.createElement("div");
                 div.className = "entry";
 
+                let appendString = "<p>";
                 if (index < titles.length - 1) {
-                    finalString = finalString + "<a href=\"posts.html?post=" + titles[index + 1] + "\"><< Previous Post</a> ||";
+                    appendString = appendString + "<a href=\"posts.html?post=" + titles[index + 1] + "\"><< Previous Post</a> ||";
                 }
-                finalString = finalString + " <a href=\"./posts.html\">All Posts</a> ";
+                appendString = appendString + " <a href=\"./posts.html\">All Posts</a> ";
                 if (index > 0) {
-                    finalString = finalString + "|| <a href=\"posts.html?post=" + titles[index - 1] + "\">Next Post >></a>";
+                    appendString = appendString + "|| <a href=\"posts.html?post=" + titles[index - 1] + "\">Next Post >></a>";
                 }
+                appendString = appendString + "</p>";
 
-                div.innerHTML = textProcessor(post.description);
+                div.innerHTML = textProcessor(post.description + appendString);
                 target.appendChild(div);
             }
         }
