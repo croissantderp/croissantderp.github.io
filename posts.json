@@ -6,8 +6,8 @@
       "link": "3",
       "date": "12/20/2025",
       "tag": "Javelin E-Scooter",
-      "summary": "summary for post 1",
-      "description": "description for post 1"
+      "summary": "I upgraded the cheap Aliexpress battery in my scooter to a custom battery built from 20 21700 cells. This should lift the top speed substantially and improve the range.",
+      "description": "The biggest limiting factor for my scooter's performance was the battery. The current battery is a questionable unit from Aliexpress with unknown or questionable specs. After putting the scooter into service, it became clear that these unknown specs were too low. Mainly, the power would cut out when I push the throttle too hard. To figure out the specs, I ripped apart the battery pack to reveal 30 18650 cells with a 15A BMS, definitely too low.%%Ripped apart battery,PXL_20250907_033311345.jpg%%For the replacement, I decided to build a custom battery that will both have higher capacity and fit into the existing space. To maximize space usage, I decided to use 21700 cells in a 10s2p configuration. A 40A smart bms was chosen for active balancing capabilities and temperature control. To hold the cells together, the frame was printed with ASA with the cells grouped in sets of three.%%The battery frame,PXL_20260121_043851625.jpg%%"
     },
     {
       "title": "New Website!",

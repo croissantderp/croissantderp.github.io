@@ -1,9 +1,16 @@
 ﻿document.addEventListener('DOMContentLoaded', initiate);
 
-function textProcessor(input) {
+function textProcessor(input, loading = 0) {
     //replaces text surrounded by %% with images
     let splitDesc = input.split("%%");
     let finalString = "";
+    if (loading == 1) {
+        loading = "loading =\"lazy\"";
+    }
+    else {
+        loading = "";
+    }
+
     for (let i = 0; i < splitDesc.length; i++) {
         if (i % 2 == 0) {
             finalString = finalString + "<p>" + splitDesc[i] + "</p>";
@@ -18,10 +25,10 @@ function textProcessor(input) {
                 case "jpg":
                 case "gif":
                     splitSplitDesc = splitDesc[i].split(",");
-                    finalString = finalString + "<img src=\"./media/" + splitSplitDesc[1] + "\" title=\"" + splitSplitDesc[0] + "\" alt=\"" + splitSplitDesc[0] + "\">";
+                    finalString = finalString + "<img " + loading + " src=\"./media/" + splitSplitDesc[1] + "\" title=\"" + splitSplitDesc[0] + "\" alt=\"" + splitSplitDesc[0] + "\">";
                     break;
                 case "mp4":
-                    finalString = finalString + "<video controls><source src=\"./media/" + splitDesc[i] + "\" type=\"video/mp4\"></video>";
+                    finalString = finalString + "<video " + loading + " controls><source src=\"./media/" + splitDesc[i] + "\" type=\"video/mp4\"></video>";
                     break;
                 case "h":
                     splitSplitDesc = splitDesc[i].split(",");
@@ -105,7 +112,7 @@ function initiate() {
                         post = postTags[i];
                         let div2 = document.createElement("div");
                         div2.className = "entry";
-                        div2.innerHTML = "<h2>" + post.title + "</h2>" + textProcessor(post.description);
+                        div2.innerHTML = "<h2>" + post.title + "</h2>" + textProcessor(post.description,1);
                         document.body.insertBefore(div2, footer);
                     }
                     footer.innerHTML = "↪ All Posts";
