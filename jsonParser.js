@@ -72,7 +72,7 @@ function initiate() {
         for (let post of posts) {
             let div = document.createElement("div");
             div.className = "post";
-            div.innerHTML = "<div class=\"line\"></div><h2>" + post.title + "</h2><p>" + post.summary + "</p><a href=\"posts.html?post=" + post.link + "\">continued...</a>"
+            div.innerHTML = "<div class=\"line\"></div><h2>" + post.date + " | " +  post.title + "</h2><p>" + post.summary + "</p><a href=\"posts.html?post=" + post.link + "\">continued...</a>"
             target2.appendChild(div);
             if (i >= 2) break;
             i++;
@@ -144,7 +144,7 @@ function initiate() {
             if (titles.includes(params.get("post"))) {
                 let index = titles.indexOf(params.get("post"));
                 let post = posts[index];
-                document.getElementsByClassName("title")[0].innerHTML = post.title;
+                document.getElementsByClassName("title")[0].innerHTML = post.date + " | " + post.title;
                 document.title = post.title;
                 let div = document.createElement("div");
                 div.className = "entry";
